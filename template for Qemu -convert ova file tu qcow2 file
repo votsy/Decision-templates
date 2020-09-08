@@ -1,0 +1,22 @@
+Converting OVA to qcow2 format 
+
+EXTRACT THE FILES FROM THE OVA FILE
+
+tar -xvf name_virtual_file.ova
+
+CONVERT THE VMDK FILE TO QCOW2 USING QEMU-IMG
+
+qemu-img convert name_virtual_file.vmdk name_virtual_file.qcow2 -O qcow2
+
+VERIFY THE NEW FORMAT WITH THE FILE COMMAND
+
+file name_virtual_file-disk001.qcow2
+
+-----> name_virtual_file-disk001.qcow2: QEMU QCOW Image (v3), xxxxxxxxxxxx bytes
+
+MOVE THE FILE INTO /VAR/LIB/LIBVIRT/IMAGES
+
+sudo mv name_virtual_file.qcow2 /var/lib/libvirt/images
+
+USE VIRT-MANAGER TO MANAGE MY VIRTUAL MACHINES. CREATE A NEW VM AND SELECT IMPORT EXISTING DISK IMAGE.
+SELECT THE QCOW2 FILE AND FOLLOW THE REST OF THE PROMPT
